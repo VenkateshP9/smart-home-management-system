@@ -1,0 +1,977 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Home Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+       
+</head>
+
+<body>
+
+<!-- WELCOME PAGE -->
+<section id="welcomePage" class="welcome-page">
+    <div class="welcome-content">
+        <div class="welcome-icon">
+            <i class="fa-solid fa-house"></i>
+        </div>
+
+        <h1>Welcome to Smart Home</h1>
+        <p>
+            Control your home devices, monitor security,
+            manage rooms and automate your daily routine
+            from one simple dashboard.
+        </p>
+
+        <button id="getStartedBtn" class="primary-btn">
+            Get Started →
+        </button>
+    </div>
+</section>
+
+<!-- MAIN APPLICATION -->
+<div class="app hidden">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-house"></i>
+            <span>SmartHome</span>
+        </div>
+
+        <nav>
+            <button class="nav-item active" data-section="dashboard">
+                <i class="fa-solid fa-chart-pie"></i>
+                Dashboard
+            </button>
+
+            <button class="nav-item" data-section="rooms">
+                <i class="fa-solid fa-door-open"></i>
+                Rooms
+            </button>
+
+            <button class="nav-item" data-section="devices">
+                <i class="fa-solid fa-lightbulb"></i>
+                Devices
+            </button>
+
+            <button class="nav-item" data-section="security">
+                <i class="fa-solid fa-shield-halved"></i>
+                Security
+            </button>
+
+            <button class="nav-item" data-section="energy">
+                <i class="fa-solid fa-bolt"></i>
+                Energy
+            </button>
+
+            <button class="nav-item" data-section="automation">
+                <i class="fa-solid fa-clock"></i>
+                Automation
+            </button>
+            
+
+            <button class="nav-item" data-section="scenes">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                Smart Scenes
+            </button>
+            <button class="nav-btn" data-section="waterTank">
+                <i class="fas fa-water"></i>
+                <span>Water Tank</span>
+            </button>
+            
+        </nav>
+
+        <div class="sidebar-bottom">
+            <button class="nav-item" data-section="settings">
+                <i class="fa-solid fa-gear"></i>
+                Settings
+            </button>
+        </div>
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+        <!-- HEADER -->
+        <header class="header">
+            <div>
+                <h1 id="pageTitle">Dashboard</h1>
+                <p id="dateTime"></p>
+            </div>
+
+            <div class="header-actions">
+                <button class="icon-btn" id="notificationBtn">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="notification-dot"></span>
+                </button>
+
+                <button class="icon-btn" id="themeBtn">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+
+                <div class="profile">
+                    <div class="avatar">V</div>
+                    <div>
+                        <strong>Home Owner</strong>
+                        <small>Smart Home User</small>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- DASHBOARD -->
+        <section id="dashboard" class="section active">
+
+            <div class="welcome">
+                <div>
+                    <h2>Good Morning! 👋</h2>
+                    <p>Manage your smart home from one place.</p>
+                </div>
+
+                <button class="primary-btn" id="allOffBtn">
+                    <i class="fa-solid fa-power-off"></i>
+                    Turn Everything Off
+                </button>
+            </div>
+
+            <!-- STATISTICS -->
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-icon temperature">
+                        <i class="fa-solid fa-temperature-half"></i>
+                    </div>
+                    <div>
+                        <span>Temperature</span>
+                        <h3 id="temperature">28°C</h3>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon humidity">
+                        <i class="fa-solid fa-droplet"></i>
+                    </div>
+                    <div>
+                        <span>Humidity</span>
+                        <h3 id="humidity">62%</h3>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon energy-icon">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <div>
+                        <span>Energy Today</span>
+                        <h3 id="energyValue">4.2 kWh</h3>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon devices-icon">
+                        <i class="fa-solid fa-plug"></i>
+                    </div>
+                    <div>
+                        <span>Active Devices</span>
+                        <h3 id="activeDevices">0</h3>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="dashboard-grid">
+
+                <!-- QUICK DEVICE CONTROL -->
+                <div class="panel">
+                    <div class="panel-header">
+                        <div>
+                            <h2>Quick Device Control</h2>
+                            <p>Control your devices</p>
+                        </div>
+
+                        <button class="text-btn"
+                                data-section-link="devices">
+                            View All
+                        </button>
+                    </div>
+
+                    <div class="device-grid">
+                        <!-- JavaScript displays devices here -->
+                    </div>
+                </div>
+
+                <!-- SECURITY SUMMARY -->
+                <div class="panel security-panel">
+                    <div class="panel-header">
+                        <div>
+                            <h2>Home Security</h2>
+                            <p>Your home is secure</p>
+                        </div>
+                        <i class="fa-solid fa-shield-halved security-icon"></i>
+                    </div>
+
+                    <div class="security-status">
+                        <div class="security-circle">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <div>
+                            <h3>All Secure</h3>
+                            <p>No security issues detected.</p>
+                        </div>
+                    </div>
+
+                    <div class="security-list">
+                        <div>
+                            <span>
+                                <i class="fa-solid fa-door-closed"></i>
+                                Main Door
+                            </span>
+                            <strong class="secure">Locked</strong>
+                        </div>
+
+                        <div>
+                            <span>
+                                <i class="fa-solid fa-window-maximize"></i>
+                                Windows
+                            </span>
+                            <strong class="secure">Closed</strong>
+                        </div>
+
+                        <div>
+                            <span>
+                                <i class="fa-solid fa-video"></i>
+                                Camera
+                            </span>
+                            <strong class="secure">Online</strong>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ENERGY CHART -->
+            <div class="panel energy-panel">
+                <div class="panel-header">
+                    <div>
+                        <h2>Energy Usage</h2>
+                        <p>Today's electricity consumption</p>
+                    </div>
+
+                    <div class="energy-total">
+                        <strong id="energyTotal">4.2 kWh</strong>
+                        <span>Today</span>
+                    </div>
+                </div>
+
+                <div class="chart">
+                    <div class="bar" style="height:40%">
+                        <span>6AM</span>
+                    </div>
+                    <div class="bar" style="height:55%">
+                        <span>8AM</span>
+                    </div>
+                    <div class="bar" style="height:35%">
+                        <span>10AM</span>
+                    </div>
+                    <div class="bar" style="height:70%">
+                        <span>12PM</span>
+                    </div>
+                    <div class="bar" style="height:50%">
+                        <span>2PM</span>
+                    </div>
+                    <div class="bar" style="height:80%">
+                        <span>4PM</span>
+                    </div>
+                    <div class="bar" style="height:65%">
+                        <span>6PM</span>
+                    </div>
+                    <div class="bar" style="height:45%">
+                        <span>8PM</span>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ROOMS -->
+        <section id="rooms" class="section room-section">
+
+            <div class="section-heading">
+                <div>
+                    <h2>My Rooms</h2>
+                    <p>Manage your home rooms and devices</p>
+                </div>
+
+                <button id="addRoomBtn">+ Add Room</button>
+            </div>
+
+            <div id="roomList" class="room-grid"></div>
+
+        </section>
+
+        <!-- DEVICES INSIDE SELECTED ROOM -->
+        <section id="deviceSection" class="device-section hidden">
+
+            <div class="section-heading">
+                <div>
+                    <h2 id="selectedRoomName">Room Devices</h2>
+                    <p>Manage devices in this room</p>
+                </div>
+
+                <button id="addDeviceBtn">+ Add Device</button>
+            </div>
+
+            <div id="deviceList" class="device-grid"></div>
+
+        </section>
+
+        <!-- ALL DEVICES -->
+        <section id="devices" class="section">
+
+            <div class="section-title">
+                <div>
+                    <h2>All Devices</h2>
+                    <p>Control every smart device</p>
+                </div>
+            </div>
+
+            <div class="all-devices">
+                <!-- JavaScript displays all devices here -->
+            </div>
+
+        </section>
+
+        <!-- SECURITY -->
+        <!-- ADVANCED SECURITY -->
+<section id="security" class="section">
+
+    <div class="section-title">
+        <div>
+            <h2>Advanced Security</h2>
+            <p>Monitor and manage your home security</p>
+        </div>
+
+        <button class="primary-btn" id="securityBtn">
+            <i class="fa-solid fa-shield"></i>
+            Arm Security
+        </button>
+    </div>
+
+    <div class="security-overview panel">
+        <div class="security-status">
+            <div class="security-circle" id="securityCircle">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <div>
+                <h3 id="securityStatus">Security Disarmed</h3>
+                <p id="securityMessage">Your security system is currently inactive.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="security-grid">
+
+        <div class="security-card">
+            <i class="fa-solid fa-door-closed"></i>
+            <h3>Main Door</h3>
+            <p id="doorStatus">Locked</p>
+            <button class="outline-btn" id="doorBtn">Unlock</button>
+        </div>
+
+        <div class="security-card">
+            <i class="fa-solid fa-window-maximize"></i>
+            <h3>Window Sensor</h3>
+            <p id="windowStatus">Closed</p>
+            <button class="outline-btn" id="windowBtn">Simulate Open</button>
+        </div>
+
+        <div class="security-card">
+            <i class="fa-solid fa-person-walking"></i>
+            <h3>Motion Sensor</h3>
+            <p id="motionStatus">No Motion</p>
+            <button class="outline-btn" id="motionBtn">Test Motion</button>
+        </div>
+
+        <div class="security-card">
+            <i class="fa-solid fa-bell"></i>
+            <h3>Alarm System</h3>
+            <p id="alarmStatus">Inactive</p>
+            <button class="outline-btn" id="alarmBtn">Test Alarm</button>
+        </div>
+
+        <div class="security-card">
+            <i class="fa-solid fa-video"></i>
+            <h3>Security Camera</h3>
+            <p id="cameraStatus">Online</p>
+            <button class="outline-btn" id="cameraBtn">Check Camera</button>
+        </div>
+
+    </div>
+
+    <div class="panel security-history-panel">
+        <div class="panel-header">
+            <div>
+                <h2>Security Activity History</h2>
+                <p>Recent security events</p>
+            </div>
+            <button class="outline-btn" id="clearSecurityHistory">
+                Clear History
+            </button>
+        </div>
+        <div id="securityHistory" class="security-history">
+            <p class="empty-message">No security activity yet.</p>
+        </div>
+    </div>
+
+</section>
+
+<!-- FAMILY MEMBER MANAGEMENT -->
+<section id="family" class="section">
+
+    <div class="section-title">
+        <div>
+            <h2>Family Member Management</h2>
+            <p>Manage people who can access your smart home</p>
+        </div>
+
+        <button class="primary-btn" id="addFamilyBtn">
+            <i class="fa-solid fa-user-plus"></i>
+            Add Family Member
+        </button>
+    </div>
+
+    <div class="stats-grid family-stats">
+
+        <div class="stat-card">
+            <div class="stat-icon devices-icon">
+                <i class="fa-solid fa-users"></i>
+            </div>
+            <div>
+                <span>Total Members</span>
+                <h3 id="familyCount">1</h3>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon humidity">
+                <i class="fa-solid fa-user-check"></i>
+            </div>
+            <div>
+                <span>Active Members</span>
+                <h3 id="activeFamilyCount">1</h3>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="panel">
+        <div class="panel-header">
+            <div>
+                <h2>Family Members</h2>
+                <p>Member details and access permissions</p>
+            </div>
+        </div>
+
+        <div id="familyList" class="family-grid"></div>
+    </div>
+
+</section>
+
+<!-- ADD / EDIT FAMILY MEMBER MODAL -->
+<div id="familyModal" class="modal hidden">
+    <div class="modal-content">
+        <h2 id="familyModalTitle">Add Family Member</h2>
+
+        <input type="text" id="familyName"
+               placeholder="Enter member name">
+
+        <input type="email" id="familyEmail"
+               placeholder="Enter email address">
+
+        <select id="familyRole">
+            <option value="Member">Member</option>
+            <option value="Admin">Admin</option>
+        </select>
+
+        <h3 class="permission-heading">Permissions</h3>
+
+        <label class="permission-option">
+            <input type="checkbox" id="permissionDevices" checked>
+            Control smart devices
+        </label>
+
+        <label class="permission-option">
+            <input type="checkbox" id="permissionSecurity">
+            Manage security settings
+        </label>
+
+        <label class="permission-option">
+            <input type="checkbox" id="permissionMembers">
+            Manage family members
+        </label>
+
+        <div class="modal-buttons">
+            <button id="saveFamilyBtn">Save Member</button>
+            <button class="cancel-btn" id="closeFamilyBtn">Cancel</button>
+        </div>
+    </div>
+</div>
+<button class="nav-item" data-section="family">
+    <i class="fa-solid fa-users"></i>
+    Family Members
+</button>
+        <!-- ENERGY -->
+        <section id="energy" class="section">
+
+            <div class="section-title">
+                <div>
+                    <h2>Energy Management</h2>
+                    <p>Monitor electricity consumption</p>
+                </div>
+            </div>
+
+            <div class="energy-stats">
+
+                <div class="energy-card">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span>Today</span>
+                    <h2>4.2 kWh</h2>
+                </div>
+
+                <div class="energy-card">
+                    <i class="fa-solid fa-calendar-week"></i>
+                    <span>This Week</span>
+                    <h2>28.7 kWh</h2>
+                </div>
+
+                <div class="energy-card">
+                    <i class="fa-solid fa-indian-rupee-sign"></i>
+                    <span>Estimated Cost</span>
+                    <h2>₹236</h2>
+                </div>
+
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h2>Device Consumption</h2>
+                        <p>Estimated usage by device</p>
+                    </div>
+                </div>
+
+                <div class="consumption-list">
+                    <div>
+                        <span>❄️ AC</span>
+                        <strong>2.1 kWh</strong>
+                    </div>
+                    <div>
+                        <span>🌀 Fan</span>
+                        <strong>0.8 kWh</strong>
+                    </div>
+                    <div>
+                        <span>💡 Lights</span>
+                        <strong>0.6 kWh</strong>
+                    </div>
+                    <div>
+                        <span>📺 TV</span>
+                        <strong>0.4 kWh</strong>
+                    </div>
+                    <div>
+                        <span>🔌 Other</span>
+                        <strong>0.3 kWh</strong>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- AUTOMATION -->
+        <section id="automation" class="section">
+
+            <div class="section-title">
+                <div>
+                    <h2>Automation</h2>
+                    <p>Create automatic home routines</p>
+                </div>
+
+                <button class="primary-btn" id="addAutomation">
+                    <i class="fa-solid fa-plus"></i>
+                    Add Automation
+                </button>
+            </div>
+
+            <div class="automation-list">
+
+                <div class="automation-card">
+                    <div class="automation-icon">
+                        <i class="fa-solid fa-sun"></i>
+                    </div>
+
+                    <div class="automation-info">
+                        <h3>Morning Routine</h3>
+                        <p>Turn on living room light at 6:30 AM</p>
+                    </div>
+
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span></span>
+                    </label>
+                </div>
+
+                <div class="automation-card">
+                    <div class="automation-icon">
+                        <i class="fa-solid fa-moon"></i>
+                    </div>
+
+                    <div class="automation-info">
+                        <h3>Night Routine</h3>
+                        <p>Turn off lights at 11:00 PM</p>
+                    </div>
+
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span></span>
+                    </label>
+                </div>
+
+                <div class="automation-card">
+                    <div class="automation-icon">
+                        <i class="fa-solid fa-temperature-low"></i>
+                    </div>
+
+                    <div class="automation-info">
+                        <h3>AC Schedule</h3>
+                        <p>Turn AC off after 2 hours</p>
+                    </div>
+
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span></span>
+                    </label>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SETTINGS -->
+        <section id="settings" class="section">
+
+            <div class="section-title">
+                <div>
+                    <h2>Settings</h2>
+                    <p>Customize your smart home</p>
+                </div>
+            </div>
+
+            <div class="settings-panel">
+
+                <div class="setting-row">
+                    <div>
+                        <h3>Dark Mode</h3>
+                        <p>Use dark theme for the dashboard</p>
+                    </div>
+
+                    <label class="switch">
+                        <input type="checkbox" id="darkModeSetting">
+                        <span></span>
+                    </label>
+                </div>
+
+                <div class="setting-row">
+                    <div>
+                        <h3>Notifications</h3>
+                        <p>Receive device and security alerts</p>
+                    </div>
+
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span></span>
+                    </label>
+                </div>
+
+                <div class="setting-row">
+                    <div>
+                        <h3>Temperature Unit</h3>
+                        <p>Display temperature in Celsius</p>
+                    </div>
+
+                    <strong>°C</strong>
+                </div>
+
+            </div>
+        </section>
+        
+<!-- SMART SCENES -->
+<section id="scenes" class="section">
+
+    <div class="section-title">
+        <div>
+            <h2>Smart Scenes</h2>
+            <p>Control multiple devices with one click</p>
+        </div>
+    </div>
+
+    <div class="scene-grid">
+
+        <button class="scene-card" data-scene="morning">
+            <span>🌅</span>
+            <h3>Good Morning</h3>
+            <p>Turn on living room and kitchen lights</p>
+        </button>
+
+        <button class="scene-card" data-scene="night">
+            <span>🌙</span>
+            <h3>Good Night</h3>
+            <p>Turn off all devices</p>
+        </button>
+
+        <button class="scene-card" data-scene="away">
+            <span>🚪</span>
+            <h3>Away From Home</h3>
+            <p>Turn off devices and arm security</p>
+        </button>
+
+        <button class="scene-card" data-scene="movie">
+            <span>🎬</span>
+            <h3>Movie Time</h3>
+            <p>Turn on TV and turn off main lights</p>
+        </button>
+
+    </div>
+</section>
+<main>
+
+    <!-- Your existing dashboard section -->
+
+    <!-- Your existing rooms section -->
+
+    <!-- Your existing devices section -->
+
+
+    <!-- WATER TANK SECTION -->
+    <section id="waterTank" class="section">
+
+        <h2>💧 Water Tank Monitoring</h2>
+
+        <div class="water-grid">
+
+            <div class="water-card">
+                <h3>Water Tank Level</h3>
+
+                <div class="tank">
+                    <div id="waterFill" class="water-fill"></div>
+                    <span id="waterPercentage">50%</span>
+                </div>
+
+                <h3 id="waterLevelText">500 Litres</h3>
+                <p id="waterStatus">Normal Water Level</p>
+            </div>
+
+            <div class="water-card">
+                <h3>Water Motor Control</h3>
+
+                <h2 id="motorStatus">Motor OFF</h2>
+
+                <button id="motorBtn">Turn Motor ON</button>
+            </div>
+
+            <div class="water-card">
+                <h3>Water Management</h3>
+
+                <button id="addWaterBtn">Add 100 Litres</button>
+                <button id="useWaterBtn">Use 100 Litres</button>
+                <button id="resetWaterBtn">Reset Tank</button>
+            </div>
+
+            <div class="water-card">
+                <h3>Water History</h3>
+                <div id="waterHistory">
+                    No water activity yet.
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+
+    </main>
+</div>
+
+<!-- ADD ROOM MODAL -->
+<div id="roomModal" class="modal hidden">
+    <div class="modal-content">
+        <h2>Add New Room</h2>
+
+        <input type="text" id="roomName"
+               placeholder="Enter room name">
+
+        <div class="modal-buttons">
+            <button id="saveRoomBtn">Add Room</button>
+            <button class="cancel-btn" id="closeRoomBtn">
+                Cancel
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ADD DEVICE MODAL -->
+<div id="deviceModal" class="modal hidden">
+    <div class="modal-content">
+        <h2>Add New Device</h2>
+
+        <input type="text" id="deviceName"
+               placeholder="Enter device name">
+
+        <select id="deviceType">
+            <option value="💡">Light</option>
+            <option value="🌀">Fan</option>
+            <option value="❄️">Air Conditioner</option>
+            <option value="📺">TV</option>
+            <option value="🔌">Plug</option>
+            <option value="🌬️">Exhaust Fan</option>
+            <option value="🔒">Smart Lock</option>
+            <option value="📷">Camera</option>
+            <option value="🔊">Speaker</option>
+        </select>
+
+        <div class="modal-buttons">
+            <button id="saveDeviceBtn">Add Device</button>
+            <button class="cancel-btn" id="closeDeviceBtn">
+                Cancel
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- NOTIFICATIONS -->
+<div class="notification-panel" id="notificationPanel">
+
+    <div class="notification-header">
+        <h3>Notifications</h3>
+        <button id="closeNotifications">×</button>
+    </div>
+
+    <div class="notification-item">
+        <i class="fa-solid fa-lightbulb"></i>
+        <div>
+            <strong>Device Status</strong>
+            <p>Check your smart home devices.</p>
+        </div>
+    </div>
+
+    <div class="notification-item">
+        <i class="fa-solid fa-shield"></i>
+        <div>
+            <strong>Security</strong>
+            <p>Your home is secure.</p>
+        </div>
+    </div>
+
+    <div class="notification-item">
+        <i class="fa-solid fa-bolt"></i>
+        <div>
+            <strong>Energy</strong>
+            <p>Energy usage is normal.</p>
+        </div>
+    </div>
+
+</div>
+
+<!-- TOAST MESSAGE -->
+<div class="toast" id="toast">
+    <i class="fa-solid fa-check"></i>
+    <span id="toastMessage">Device updated</span>
+</div>
+
+<!-- WATER TANK MONITORING SECTION -->
+<section id="waterTank" class="section">
+    <div class="page-header">
+        <h2><i class="fas fa-water"></i> Water Tank Monitoring</h2>
+        <p>Monitor your home water level and motor status.</p>
+    </div>
+
+    <div class="water-grid">
+
+        <!-- Tank level -->
+        <div class="water-card">
+            <h3>Water Tank Level</h3>
+
+            <div class="tank-container">
+                <div class="tank">
+                    <div id="waterFill" class="water-fill"></div>
+                    <span id="waterPercentage">50%</span>
+                </div>
+            </div>
+
+            <h2 id="waterLevelText">500 Litres</h2>
+            <p>Tank Capacity: 1000 Litres</p>
+
+            <div id="waterStatus" class="water-status">
+                Normal Water Level
+            </div>
+        </div>
+
+        <!-- Motor control -->
+        <div class="water-card">
+            <h3>Water Motor Control</h3>
+
+            <div class="motor-icon">
+                <i class="fas fa-faucet"></i>
+            </div>
+
+            <h2 id="motorStatus">Motor OFF</h2>
+
+            <button id="motorBtn" class="water-btn">
+                <i class="fas fa-power-off"></i> Turn Motor ON
+            </button>
+
+            <p class="water-description">
+                Turn ON the motor to fill the tank automatically.
+            </p>
+        </div>
+
+        <!-- Water controls -->
+        <div class="water-card">
+            <h3>Water Management</h3>
+
+            <p>Add or use water to update the tank level.</p>
+
+            <button id="addWaterBtn" class="water-btn">
+                <i class="fas fa-plus"></i> Add 100 Litres
+            </button>
+
+            <button id="useWaterBtn" class="water-btn use-water-btn">
+                <i class="fas fa-minus"></i> Use 100 Litres
+            </button>
+
+            <button id="resetWaterBtn" class="water-btn reset-water-btn">
+                <i class="fas fa-rotate"></i> Reset Tank
+            </button>
+        </div>
+
+        <!-- Water history -->
+        <div class="water-card">
+            <h3>Water Usage History</h3>
+
+            <div id="waterHistory" class="water-history">
+                <p>No water activity yet.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+<script src="script.js"></script>
+
+</body>
+</html>
